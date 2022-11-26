@@ -5,7 +5,7 @@
   tasks:
     - name: Run job template for starting VM
       ansible.builtin.uri:
-        url: https://192.168.10.89/api/v2/job_templates/9/launch/
+        url: https://192.168.10.89/api/v2/job_templates/ジョブテンプレートIDに置き換える/launch/
         validate_certs: false
         method: POST
         headers:
