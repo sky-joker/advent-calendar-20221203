@@ -5,7 +5,7 @@
   tasks:
     - name: Run job template for starting VM
       ansible.builtin.uri:
-        url: https://192.168.10.89/api/v2/job_templates/change me to a job template id/launch/
+        url: "https://{{ lookup('ansible.builtin.env', 'AAP_HOST') }}/api/v2/job_templates/{{ lookup('ansible.builtin.env', 'JOB_TEMPLATE_ID') }}/launch/"
         validate_certs: false
         method: POST
         headers:
