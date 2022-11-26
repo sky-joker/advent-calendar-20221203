@@ -1,0 +1,13 @@
+---
+- name: Listen for events on a webhook
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+  rules:
+    - name: Run start_vm playbook
+      condition: event.payload.power_state == "down"
+      action:
+        run_playbook:
+          name: samples.vmware.start_vm

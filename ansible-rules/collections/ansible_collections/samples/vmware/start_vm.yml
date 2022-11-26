@@ -1,0 +1,18 @@
+---
+- name: Run Job Template on AAP
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Run job template for starting VM
+      ansible.builtin.uri:
+        url: https://192.168.10.89/api/v2/job_templates/9/launch/
+        validate_certs: false
+        method: POST
+        headers:
+          Content-Type: application/json
+          Authorization: "Bearer {{ lookup('ansible.builtin.env', 'AAP_SECRET') | ansible.builtin.regex_replace('\n+', '') }}"
+        body:
+          extra_vars:
+            vm_name: "{{ event.payload.vm_name }}"
+        body_format: json
+        status_code: 201
