@@ -1,6 +1,6 @@
 ---
 - name: VMware VM Powered On Playbook
-  hosts: localhost
+  hosts: all
   gather_facts: false
   tasks:
     - name: Powered on of VM
